@@ -23,11 +23,11 @@ pub use crate::{
 /// # Examples
 /// ```rust
 /// use feyngraph::generate_diagrams;
-/// let diags = generate_diagrams(&["u", "u~"], &["g"; 3], 2, Default::default(), Default::default());
+/// let diags = generate_diagrams(["u", "u~"], ["g"; 3], 2, Default::default(), Default::default());
 /// ```
 pub fn generate_diagrams(
-    particles_in: &[&str],
-    particles_out: &[&str],
+    particles_in: impl IntoIterator<Item = impl AsRef<str>>,
+    particles_out: impl IntoIterator<Item = impl AsRef<str>>,
     n_loops: usize,
     model: Model,
     selector: DiagramSelector,

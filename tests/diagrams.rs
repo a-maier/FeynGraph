@@ -8,7 +8,7 @@ use feyngraph::{
 use itertools::Itertools;
 use paste::paste;
 use rustc_hash::FxHashMap;
-use std::path::PathBuf;
+use std::{iter::empty, path::PathBuf};
 use std::sync::Arc;
 use tempfile::NamedTempFile;
 mod common;
@@ -202,7 +202,7 @@ fn diags_QCD_gauge_vacuum_diagrams_loops_4() {
             .any(|e| e.momenta.as_ref().unwrap().iter().all(|x| *x == 0))
     }));
     s.add_custom_function(Arc::new(|d| !d.propagators().any(|p| p.particle().pdg().abs() <= 6)));
-    let diag_gen = DiagramGenerator::new(&[], &[], 4, model, Some(s)).unwrap();
+    let diag_gen = DiagramGenerator::new(empty::<String>(), empty::<String>(), 4, model, Some(s)).unwrap();
     let diags = diag_gen.generate();
     assert_eq!(diags.len(), 65);
 }
